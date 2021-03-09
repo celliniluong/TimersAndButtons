@@ -5,7 +5,7 @@
 In this assignment, I am creating a clickable button that starts a timer.
 ***********************************************************************************/
 
-// uninitialized object
+// Global Variables
 var simpleTimer;
 
 var waitForClick = true;
