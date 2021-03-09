@@ -1,12 +1,12 @@
-## Empty Example for P5.js
-#### by Scott Kildall
+## Timers and Buttons
+#### by Cellini Luong
 
 
 
 ### Overview
-This is a modified version of the p5.js Empty Example that simplifies the directory structure
+For the timer and buttons assignment, I created a button that starts a timer.
 
 
 ### Technical Details
 
-Modify the sketch.js setup() and draw() functions and begin adding functions!
+Using the clickable and timer libraries, I created a button that when clicked on starts a timer.
