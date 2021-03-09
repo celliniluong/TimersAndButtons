@@ -1,13 +1,8 @@
 /***********************************************************************************
-  Simple Counter
+ Cellini Luong
+ Timer and Buttons Assignment
 
-  Uses the p5.timer.js class to show elapsed seconds on the screen
-
-------------------------------------------------------------------------------------
-  To use:
-  Add this line to the index.html
-
-  <script src="p5.timer.js"></script>
+In this assignment, I am creating a clickable button that starts a timer.
 ***********************************************************************************/
 
 // uninitialized object
@@ -16,32 +11,54 @@ var simpleTimer;
 var waitForClick = true;
 var elapsedSeconds = 0;
 
-// Setup code goes here
+var click2;
+
+// Setup code
 function setup() {
   createCanvas(windowWidth, windowHeight);
 
+  // Set up simple timer and start timer
   simpleTimer = new Timer(1000);
   simpleTimer.start();
 
+  // Text setup
   textAlign(CENTER);
   textSize(24);
   fill(255);
 
-  setTimeout(drawButton, 5000);
+  // Button setup
+  click2 = new Clickable();
+  
+  // Button design details
+  click2.cornerRadius = 0;
+  click2.locate(windowWidth/2 - 150, windowHeight/2);
+  click2.textScaled = true;
+  click2.text = "START TIMER";
+  click2.resize(300, 100);
+  
+  // Button states
+  click2.onOutside = function () {
+    this.color = "#FFFFFF";
+  }
+  click2.onHover = function () {
+    this.color = "#F2F2F2";
+  }
+  click2.onPress = function () {
+    waitForClick = false;
+    simpleTimer.start();
+    frameRate(100);
+  }
  }
 
-function drawButton() {
-  background(0); 
-}
 
-
-
-// Draw code goes here
+// Calling out button and timer in draw function
 function draw() {
   background(128, 128, 0);
 
+  click2.draw();
+
   if( waitForClick ) {
-    text( "Click on mouse to begin timer", width/2, 60);
+    text();
   }
   else{
    updateTimer(); 
@@ -49,11 +66,13 @@ function draw() {
 }
 
 
-// Looks for elapsed time
+// Looks for elapsed time and prints TIMES UP once expired
 function updateTimer() {
   if( simpleTimer.expired() ) {
-    text("BOOM", width/2, 60);
+    textSize(100);
+    text("TIMES UP", width/2, 120);
     waitForClick = true;
+    frameRate(2);
   }
 
   else{
@@ -61,7 +80,3 @@ function updateTimer() {
   }
 }
 
-function mousePressed() {
-  waitforClick = false;
-  simpleTimer.start();
-}
